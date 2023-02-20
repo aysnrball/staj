@@ -1,0 +1,59 @@
+{
+  "name": "staj",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx @babel/node",
+    "dev": "npx nodemon --exec npx @babel/node ./src/index.js dev --watch",
+    "build": "npx babel src --out-dir=./build --copy-files",
+    "production": "npm run build && node ./build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dockerize": "npm run build && docker build -t aysenurbl/payment-system-dockerize .",
+    "dockerize:images": "docker images",
+    "dockerize:start": "docker run --name payment-system -p 80:8080 -d aysenurbl/payment-system-dockerize:latest",
+    "dockerize:logs": "docker logs payment-system",
+    "dockerize:restart": "docker restart payment-system",
+    "dockerize:stop": "docker stop payment-system",
+    "dockerize:kill": "docker rm payment-system --force",
+    "dockerize:delete": "docker rmi aysenurbl/payment-system-dockerize --force",
+    "dockerize:exec": "docker exec -it payment-system /bin/bash"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aysnrball/staj.git"
+  },
+  "author": "Aysenur Bal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aysnrball/staj/issues"
+  },
+  "homepage": "https://github.com/aysnrball/staj#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.12",
+    "@babel/node": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/register": "^7.18.9",
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "helmet": "^6.0.1",
+    "https": "^1.0.0",
+    "iyzipay": "^2.0.48",
+    "jsonwebtoken": "^9.0.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "mongoose": "^6.9.1",
+    "morgan": "^1.10.0",
+    "nanoid": "^3.0.0",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
+    "uuid": "^9.0.0"
+  }
+}
